@@ -1,7 +1,80 @@
 *******************************************************************************************************************************************************************
-3. Online Payment Processing
+# 3. Online Payment Processing
 Problem Statement
 An online shopping platform supports multiple payment methods. Each
 payment method charges a different transaction fee.
 Design the program using OOPS structure
 *********************************************************************************************************************************************************************
+
+import java.util.*;
+
+interface Payment {
+    double calculateFee(double amount);
+}
+
+class CreditCardPayment implements Payment {
+    public double calculateFee(double amount) {
+        double TransactionFee = (2.0 / 100) * amount;
+        amount = amount + TransactionFee;
+
+        System.out.printf("Payment Amount: %.2f%n", amount - TransactionFee);
+        System.out.printf("Transaction Fee: %.2f%n", TransactionFee);
+        System.out.printf("Final Amount: %.2f%n", amount);
+
+        return amount;
+    }
+}
+
+class UpiPayment implements Payment {
+    public double calculateFee(double amount) {
+        double TransactionFee = (0.5 / 100) * amount;
+        amount = amount + TransactionFee;
+
+        System.out.printf("Payment Amount: %.2f%n", amount - TransactionFee);
+        System.out.printf("Transaction Fee: %.2f%n", TransactionFee);
+        System.out.printf("Final Amount: %.2f%n", amount);
+
+        return amount;
+    }
+}
+
+class WalletPayment implements Payment {
+    public double calculateFee(double amount) {
+        double TransactionFee = (1.0 / 100) * amount;
+        amount = amount + TransactionFee;
+
+        System.out.printf("Payment Amount: %.2f%n", amount - TransactionFee);
+        System.out.printf("Transaction Fee: %.2f%n", TransactionFee);
+        System.out.printf("Final Amount: %.2f%n", amount);
+
+        return amount;
+    }
+}
+
+class Main {
+    public static void main(String args[]) {
+        Scanner sb = new Scanner(System.in);
+
+        int n = sb.nextInt();
+        double amount = sb.nextDouble();
+
+        if (n < 1 || n > 3 || amount <= 0 || amount > 1000000) {
+            System.out.println("Not Valid");
+            return;
+        }
+
+        Payment p;
+
+        if (n == 1) {
+            p = new CreditCardPayment();
+        }
+        else if (n == 2) {
+            p = new UpiPayment();
+        }
+        else {
+            p = new WalletPayment();
+        }
+
+        p.calculateFee(amount);
+    }
+}
