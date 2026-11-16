@@ -7,3 +7,97 @@ employees. The payroll system must support both method overriding and
 method overloading.
 Design the program using OOPS structure
 *******************************************************************************************************************************************************************
+import java.util.*;
+class Employee {
+    String employeeName;
+
+    Employee(String employeeName) {
+        this.employeeName = employeeName;
+    }
+    double calculateBonus() {
+        return 0.0;
+    }
+    double calculateBonus(double amount) {
+        return 0.0;
+    }
+}
+class TechnicalEmployee extends Employee {
+    double basicSalary;
+    int rating;
+    TechnicalEmployee(String employeeName, double basicSalary, int rating) {
+        super(employeeName);
+        this.basicSalary = basicSalary;
+        this.rating = rating;
+    }
+    double calculateBonus() {
+        return (basicSalary * rating * 2) / 100;
+    }
+    double calculateBonus(double salary, int employeeRating) {
+        return (salary * employeeRating * 2) / 100;
+    }
+}
+class SalesEmployee extends Employee {
+    double salesAmount;
+    SalesEmployee(String employeeName, double salesAmount) {
+        super(employeeName);
+        this.salesAmount = salesAmount;
+    }
+    double calculateBonus() {
+        return (salesAmount * 3) / 100;
+    }
+    double calculateBonus(double amount) {
+        return (amount * 3) / 100;
+    }
+}
+
+class Main {
+    public static void main(String args[]) {
+        Scanner sb = new Scanner(System.in);
+
+        int n = sb.nextInt();
+        Employee e;
+        double bonus;
+        double total;
+
+        if (n == 1) {
+            String employeeName = sb.next();
+            double basicSalary = sb.nextDouble();
+            int rating = sb.nextInt();
+
+            if (basicSalary <= 0 || basicSalary > 1000000 ||
+                rating < 1 || rating > 5) {
+                System.out.println("Not Valid");
+                return;
+            }
+
+            TechnicalEmployee t = new TechnicalEmployee(employeeName, basicSalary, rating);
+
+            e = t;
+            bonus = e.calculateBonus();
+            total = basicSalary + bonus;
+        }
+        else if (n == 2) {
+            String employeeName = sb.next();
+            double salesAmount = sb.nextDouble();
+
+            if (salesAmount <= 0 || salesAmount > 5000000) {
+                System.out.println("Not Valid");
+                return;
+            }
+
+            SalesEmployee s = new SalesEmployee(employeeName, salesAmount);
+
+            e = s;
+            bonus = e.calculateBonus();
+            total = salesAmount + bonus;
+        }
+        else {
+            System.out.println("Not Valid");
+            return;
+        }
+
+        System.out.println("Employee Name: " + e.employeeName);
+        System.out.printf("Bonus: %.2f%n", bonus);
+        System.out.printf("Total Earnings: %.2f%n", total);
+    }
+}
