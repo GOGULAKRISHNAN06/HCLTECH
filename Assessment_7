@@ -1,0 +1,9 @@
+*********************************************************************************************************************************************************************
+7. Employee Access and Permission System
+Problem Statement
+
+An enterprise application provides different access permissions to employees
+based on their roles. The system must support different implementations of
+the same access-control contract.
+Design the program using OOPS structure
+*********************************************************************************************************************************************************************
