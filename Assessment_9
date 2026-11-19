@@ -7,3 +7,79 @@ medical service. Emergency consultation also includes additional test
 charges.
 Design the program using OOPS structure
 *********************************************************************************************************************************************************************
+
+import java.util.*;
+
+abstract class Doctor {
+    double consultationCharge;
+
+    Doctor(double consultationCharge) {
+        this.consultationCharge = consultationCharge;
+    }
+
+    abstract String getDoctorType();
+
+    double calculateTotalBill(double testCharges) {
+        return consultationCharge;
+    }
+}
+
+class GeneralPhysician extends Doctor {
+    GeneralPhysician() {
+        super(500.0);
+    }
+
+    String getDoctorType() {
+        return "General Physician";
+    }
+}
+
+class Specialist extends Doctor {
+    Specialist() {
+        super(1000.0);
+    }
+
+    String getDoctorType() {
+        return "Specialist";
+    }
+}
+
+class EmergencyDoctor extends Doctor {
+    EmergencyDoctor() {
+        super(1500.0);
+    }
+
+    String getDoctorType() {
+        return "Emergency Doctor";
+    }
+
+    double calculateTotalBill(double testCharges) {
+        return consultationCharge + testCharges;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int doctorType = sc.nextInt();
+        double testCharges = sc.nextDouble();
+
+        Doctor obj = null;
+
+        if (doctorType == 1) {
+            obj = new GeneralPhysician();
+        }
+        else if (doctorType == 2) {
+            obj = new Specialist();
+        }
+        else if (doctorType == 3) {
+            obj = new EmergencyDoctor();
+        }
+
+        System.out.println("Doctor Type: " + obj.getDoctorType());
+        System.out.printf("Consultation Charge: %.2f%n", obj.consultationCharge);
+        System.out.printf("Test Charges: %.2f%n", testCharges);
+        System.out.printf("Total Bill: %.2f%n", obj.calculateTotalBill(testCharges));
+    }
+}
