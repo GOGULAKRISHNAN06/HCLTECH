@@ -7,3 +7,78 @@ based on their roles. The system must support different implementations of
 the same access-control contract.
 Design the program using OOPS structure
 *********************************************************************************************************************************************************************
+
+import java.util.*;
+
+interface AccessControl {
+    String getRole();
+    int getAccessLevel();
+    boolean canAccess(int requiredLevel);
+}
+
+class Developer implements AccessControl {
+    public String getRole() {
+        return "Developer";
+    }
+
+    public int getAccessLevel() {
+        return 1;
+    }
+
+    public boolean canAccess(int requiredLevel) {
+        return getAccessLevel() >= requiredLevel;
+    }
+}
+
+class Manager implements AccessControl {
+    public String getRole() {
+        return "Manager";
+    }
+
+    public int getAccessLevel() {
+        return 2;
+    }
+
+    public boolean canAccess(int requiredLevel) {
+        return getAccessLevel() >= requiredLevel;
+    }
+}
+
+class Administrator implements AccessControl {
+    public String getRole() {
+        return "Administrator";
+    }
+
+    public int getAccessLevel() {
+        return 3;
+    }
+
+    public boolean canAccess(int requiredLevel) {
+        return getAccessLevel() >= requiredLevel;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int roleType = sc.nextInt();
+        int requiredLevel = sc.nextInt();
+
+        AccessControl obj = null;
+
+        if (roleType == 1) {
+            obj = new Developer();
+        }
+        else if (roleType == 2) {
+            obj = new Manager();
+        }
+        else if (roleType == 3) {
+            obj = new Administrator();
+        }
+
+        System.out.println("Role: " + obj.getRole());
+        System.out.println("Access Level: " + obj.getAccessLevel());
+        System.out.println("Can Access: " + obj.canAccess(requiredLevel));
+    }
+}
