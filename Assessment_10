@@ -6,3 +6,84 @@ An e-commerce platform sells different categories of products. Each product
 category has a different discount percentage.
 Design the program using OOPS structure
 *********************************************************************************************************************************************************************
+import java.util.*;
+
+class Product {
+    int productId;
+    String productName;
+    double price;
+
+    Product(int productId, String productName, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+    }
+
+    double calculateDiscount() {
+        return 0.0;
+    }
+}
+
+class ElectronicsProduct extends Product {
+    ElectronicsProduct(int productId, String productName, double price) {
+        super(productId, productName, price);
+    }
+
+    double calculateDiscount() {
+        return price * 0.12;
+    }
+}
+
+class ClothingProduct extends Product {
+    ClothingProduct(int productId, String productName, double price) {
+        super(productId, productName, price);
+    }
+
+    double calculateDiscount() {
+        return price * 0.20;
+    }
+}
+
+class GroceryProduct extends Product {
+    GroceryProduct(int productId, String productName, double price) {
+        super(productId, productName, price);
+    }
+
+    double calculateDiscount() {
+        return price * 0.05;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter productType: ");
+        int productType = sc.nextInt();
+        System.out.println("Enter productId: ");
+        int productId = sc.nextInt();
+         System.out.println("Enter productName: ");
+        String productName = sc.next();
+         System.out.println("Enter product price: ");
+        double price = sc.nextDouble();
+
+        Product obj = null;
+
+        if (productType == 1) {
+            obj = new ElectronicsProduct(productId, productName, price);
+        }
+        else if (productType == 2) {
+            obj = new ClothingProduct(productId, productName, price);
+        }
+        else if (productType == 3) {
+            obj = new GroceryProduct(productId, productName, price);
+        }
+
+        double discount = obj.calculateDiscount();
+        double finalPrice = price - discount;
+
+        System.out.println("Product ID: " + obj.productId);
+        System.out.println("Product Name: " + obj.productName);
+        System.out.printf("Discount: %.2f%n", discount);
+        System.out.printf("Final Price: %.2f%n", finalPrice);
+    }
+}
