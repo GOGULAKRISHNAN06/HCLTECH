@@ -1,8 +1,0 @@
-Q1.Write a SQL statement to create the courses table with the specified columns and datatypes.
-
-create table course_table(
-    course_id int,
-    course_name varchar(100),
-    duration_month int,
-    course_fee decimal(10,2)
-);
