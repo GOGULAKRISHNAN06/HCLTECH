@@ -1,0 +1,10 @@
+Write SQL statements to insert the following patient records into the patients table.
+patient_id patient_name  age gender  city
+201        Arun Kumar    35  Male    Chennai
+202        Priya Sharma  29  Female  Coimbatore
+203        Karthik Raj   42  Male    Madurai
+
+insert into patients_table
+values(201,'Arun Kumar',35,'Male','Chennai'),
+(202,'Priya Sharma',29,'Female','Coimbatore'),
+(203,'Karthik Raj',42,'Male','Madurai');
