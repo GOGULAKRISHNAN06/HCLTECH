@@ -1,0 +1,25 @@
+Q9.Write SQL statements to create the departments and employees tables.
+Apply the following constraints:
+• department_id and employee_id must be primary keys.
+• department_name must be NOT NULL and UNIQUE.
+• location is an optional field.
+• employee_name must be NOT NULL.
+• email must be NOT NULL and UNIQUE.
+• department_id in employees must be a foreign key.
+• salary cannot be negative.
+• employment_status must have the default value Active.
+
+create table departments(
+  department_id int primary key,
+  department_name varchar(100) NOT NULL  UNIQUE,
+  location varchar(100)
+);
+create table employee(
+  employee_id int primary key,
+  employee_name varchar(100),
+  email varchar(150) NOT NULL UNIQUE,
+  department_id int,
+  salary decimal(10,2) check(salary>0.00),
+  employee_status varchar(20) default 'Active',
+  foreign key (department_id) references departments(department_id)
+);
