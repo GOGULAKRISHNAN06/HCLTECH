@@ -1,0 +1,12 @@
+Write a SQL statement to create the library_members table with:
+• member_id as the primary key.
+• member_name as NOT NULL.
+• email as NOT NULL and UNIQUE.
+• phone as an optional field. 
+
+create table library_members(
+  member_id int primary key,
+  member_name varchar(100) NOT NULL,
+  email Varchar(150) NOT NULL UNIQUE,
+  phone varchar(15)
+);
