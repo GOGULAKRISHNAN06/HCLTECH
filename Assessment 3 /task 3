@@ -1,8 +1,0 @@
-Q3.Write a SQL statement to create the employees table with employee_id as the primary key.
-
-create table Employees(
-  emp_id int primary key,
-  employee_name varchar(100),
-  department varchar(50),
-  salary Decimal(10,2)
-);
