@@ -1,9 +1,0 @@
-Q2.Write a SQL statement to create the patients table with the specified columns and datatypes.
-
-create table patients_table (
-  patient_id int,
-  patient_name varchar(100),
-  age int,
-  gender varchar(20),
-  city varchar(50)
-);
