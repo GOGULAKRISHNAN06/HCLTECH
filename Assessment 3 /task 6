@@ -1,0 +1,14 @@
+Q6.Write a SQL statement to create the bank_accounts table with:
+• account_id as the primary key.
+• customer_name as NOT NULL.
+• account_number as NOT NULL and UNIQUE.
+• balance as an optional field.
+• status with a default value of Active.
+
+create table bank_account (
+  account_id int primary key,
+  customer_name varchar(100) NOT NULL,
+  account_number varchar(20) NOT NULL  UNIQUE,
+  balance decimal(12,2),
+  status varchar(20) default 'Active'
+);
