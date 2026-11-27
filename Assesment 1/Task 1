@@ -1,0 +1,114 @@
+***************************************************************************************************************************************************************
+# 1.Employee Salary Processing
+Problem Statement:
+A company payroll system maintains different types of employees. The salary
+calculation depends on the employee type.
+Design the program using OOPS structure
+
+***************************************************************************************************************************************************************
+```
+import java.util.*;
+abstract class Employee{
+    private int employeeId;
+    private String employeeName;
+    Employee(int employeeId,String employeeName ){
+        this.employeeId=employeeId;
+        this.employeeName=employeeName;
+    }
+    public int getEmployeeId(){
+        return employeeId;
+    }
+    public String getEmployeeName(){
+        return employeeName;
+    }
+    abstract void calculateSalary();
+    double salary;
+}
+class FullTimeEmployee extends Employee{
+    double msalary;
+
+    FullTimeEmployee(int id,String name,double msalary) {
+        super(id,name);
+        this.msalary = msalary;
+    }
+    void calculateSalary(){
+       
+        salary=msalary;
+        System.out.println("Employee ID: "+getEmployeeId());
+        System.out.println("Employee Name: "+getEmployeeName());
+        System.out.println("Employee Salary: "+salary);
+       
+    }
+}
+class ContractEmployee extends Employee{
+    double dailyrate;
+    int days;
+    ContractEmployee(int id,String name,double dailyrate,int days){
+        super(id,name);
+        this.dailyrate=dailyrate;
+        this.days=days;
+    }
+     void calculateSalary(){
+            salary=days*dailyrate;
+            System.out.println("Employee ID: "+getEmployeeId());
+            System.out.println("Employee Name: "+getEmployeeName());
+            System.out.println("Employee Salary: "+salary);
+    }
+}
+
+class Main {
+
+    public static void main(String args[]) {
+        Scanner sb = new Scanner(System.in);
+        System.out.println("Enter Employee Type");
+        int n = sb.nextInt();
+        if (n < 1 || n > 2) {
+            System.out.println("Invalid Employee Type");
+            return;
+        }
+        System.out.println("Enter EmployeeID");
+        int id = sb.nextInt();
+        if (id < 1 || id > 100000) {
+            System.out.println("Invalid Employee ID");
+            return;
+        }
+        System.out.println("Enter EmployeeName");
+        String name = sb.next();
+        if (!name.matches("[a-zA-Z]+")) {
+            System.out.println("Invalid Employee Name");
+            return;
+        }
+        if (n == 1) {
+             System.out.println("Enter Monthly Salary");
+            double msalary = sb.nextDouble();
+            if (msalary <= 0 || msalary > 1000000) {
+                System.out.println("Invalid Monthly Salary");
+                return;
+            }
+            FullTimeEmployee f =
+                new FullTimeEmployee(id, name, msalary);
+
+            f.calculateSalary();
+        }
+        else if (n == 2) {
+            System.out.println("Enter WorkingDays");
+            int days = sb.nextInt();
+            if (days < 1 || days > 31) {
+                System.out.println("Invalid Working Days");
+                return;
+            }
+            System.out.println("Enter DailyRate");
+            double rate = sb.nextDouble();
+            if (rate <= 0 || rate > 100000) {
+                System.out.println("Invalid Daily Rate");
+                return;
+            }
+            ContractEmployee c =
+                new ContractEmployee(id, name, rate, days);
+            c.calculateSalary();
+        }
+
+        sb.close();
+    }
+}
+```

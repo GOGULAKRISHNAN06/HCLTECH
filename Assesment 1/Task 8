@@ -1,0 +1,93 @@
+*********************************************************************************************************************************************************************
+8. Online Course Fee Calculation
+Problem Statement
+
+An online learning platform offers different categories of courses. Each course
+category provides a different discount on the course fee.
+Design the program using OOPS structure
+*********************************************************************************************************************************************************************
+
+import java.util.*;
+
+abstract class Course {
+    double courseFee;
+
+    Course(double courseFee) {
+        this.courseFee = courseFee;
+    }
+
+    abstract double calculateDiscount();
+
+    abstract String getCourseType();
+
+    double calculateFinalFee() {
+        return courseFee - calculateDiscount();
+    }
+}
+
+class ProgrammingCourse extends Course {
+    ProgrammingCourse(double courseFee) {
+        super(courseFee);
+    }
+
+    double calculateDiscount() {
+        return courseFee * 0.10;
+    }
+
+    String getCourseType() {
+        return "Programming";
+    }
+}
+
+class DataScienceCourse extends Course {
+    DataScienceCourse(double courseFee) {
+        super(courseFee);
+    }
+
+    double calculateDiscount() {
+        return courseFee * 0.15;
+    }
+
+    String getCourseType() {
+        return "Data Science";
+    }
+}
+
+class CloudCourse extends Course {
+    CloudCourse(double courseFee) {
+        super(courseFee);
+    }
+
+    double calculateDiscount() {
+        return courseFee * 0.05;
+    }
+
+    String getCourseType() {
+        return "Cloud";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int courseType = sc.nextInt();
+        double courseFee = sc.nextDouble();
+
+        Course obj = null;
+
+        if (courseType == 1) {
+            obj = new ProgrammingCourse(courseFee);
+        }
+        else if (courseType == 2) {
+            obj = new DataScienceCourse(courseFee);
+        }
+        else if (courseType == 3) {
+            obj = new CloudCourse(courseFee);
+        }
+
+        System.out.println("Course Type: " + obj.getCourseType());
+        System.out.printf("Discount: %.2f%n", obj.calculateDiscount());
+        System.out.printf("Final Fee: %.2f%n", obj.calculateFinalFee());
+    }
+}
