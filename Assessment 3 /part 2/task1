@@ -1,0 +1,9 @@
+Write SQL statements to insert the following three courses into the courses table.
+|course_id |course_name         | duration_months |course_fee|
+|101       | Python Programming |     6           |25000.00  |
+|102       | Data Science       |     8           |35000.00  |
+|103       | Machine Learning   |     10          |45000.00  |
+
+insert into courses values(101,'Python Programming',6,25000.00),
+(102,'Data Science',8,35000.00),
+(103,'Machine Learning',10,45000.00);
