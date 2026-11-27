@@ -1,0 +1,21 @@
+Q8.Write SQL statements to create the customers and orders tables.
+Apply the following constraints:
+• customer_id and order_id must be primary keys.
+• customer_name must be NOT NULL.
+• email must be NOT NULL and UNIQUE.
+• customer_id in orders must be NOT NULL and must reference customers.customer_id.
+• order_amount cannot be negative.
+• order_status must have the default value Pending.
+
+create table customers(
+  customer_id int primary key,
+  customer_name varchar(100),
+  email varchar(150) not null unique
+);
+create table Orders(
+  order_id int primary key,
+  customer_id int,
+  order_amount decimal(10,2),
+  order_status varchar(20),
+  foreign key(customer_id) references customers(customer_id)
+);

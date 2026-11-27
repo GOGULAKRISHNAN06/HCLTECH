@@ -1,0 +1,12 @@
+Q7.Write a SQL statement to create the attendance table with:
+• attendance_id as the primary key.
+• employee_id as NOT NULL.
+• attendance_percentage between 0 and 100.
+• attendance_status with a default value of Present.
+
+create table attendance_table(
+  attendance_id int primary key,
+  employee_id int NOT NULL,
+  attendance_percentage decimal(5,2) check (attendance_percentage between 0 and 100),
+  attendance_status varchar(20)default 'Present'
+);

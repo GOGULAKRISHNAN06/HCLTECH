@@ -1,0 +1,35 @@
+Q10.Write SQL statements to create the students, courses, and enrollments tables.
+Apply the following constraints:
+• student_id must be the primary key.
+• student_name must be NOT NULL.
+• email must be NOT NULL and UNIQUE.
+• Student age must be at least 17.
+• course_id must be the primary key.
+• course_name must be NOT NULL and UNIQUE.
+• Course duration must be greater than zero.
+• enrollment_id must be the primary key.
+• student_id in enrollments must reference students.
+• course_id in enrollments must reference courses.
+• The combination of student_id and course_id in enrollments must be UNIQUE.
+• enrollment_status must have the default value Active.
+
+create table students(
+  student_id int primary key,
+  student_name varchar(100) NOT NULL,
+  email varchar(150) Not null unique,
+  age int check(age>=17)
+);
+create table courses(
+  course_id int primary key,
+  course_name varchar(100) NOT NULL  UNIQUE,
+  duration_months int check(duration_months>0)
+);
+create table enrollments(
+  enrollment_id int primary key,
+  student_id int,
+  course_id int,
+  enrollment_status varchar(20) default 'Active',
+  foreign key (student_id)references students(student_id),
+  foreign key (course_id) references courses(course_id)
+);
+
